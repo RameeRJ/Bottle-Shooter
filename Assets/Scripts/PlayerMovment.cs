@@ -9,7 +9,7 @@ public class PlayerMovment : MonoBehaviour
     private CharacterController controller;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = -0.6f;
     public LayerMask groundMask;
 
     Vector3 velocity;
