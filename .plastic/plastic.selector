@@ -1,0 +1,4 @@
+repository "BottleShooter/BottleShooter@20067367558366@cloud"
+  path "/"
+    br "/main"
+    co "/main"

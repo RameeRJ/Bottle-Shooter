@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,7 +10,7 @@ public class PlayerMovment : MonoBehaviour
     private CharacterController controller;
 
     public Transform groundCheck;
-    public float groundDistance = -0.6f;
+    public float groundDistance = 1.93f;
     public LayerMask groundMask;
 
     Vector3 velocity;
@@ -51,5 +52,18 @@ public class PlayerMovment : MonoBehaviour
         velocity.y -= gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (lastPosition != gameObject.transform.position && isGrounded == true)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        lastPosition = gameObject.transform.position;
     }
+
+    
 }
