@@ -4,6 +4,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public float health = 50f;
+    [SerializeField] GameObject brokenBottlePrefab;
 
     public void takeDamage(float amount)
     {
@@ -17,7 +18,11 @@ public class Target : MonoBehaviour
 
     private void Die()
     {
-       Destroy(gameObject);
+        GameObject brokenBottle = Instantiate(brokenBottlePrefab, this.transform.position, Quaternion.identity);
+        brokenBottle.GetComponent<BrokenBottle>().RandomVelocities();
+        Destroy(brokenBottle,2f);
+        Destroy(gameObject,0.1f);
+
     }
 
     void Update()

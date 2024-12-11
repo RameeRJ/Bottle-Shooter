@@ -15,6 +15,10 @@ public class MouseMovment : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //lock cursor
+        Vector3 initialRotation = transform.localRotation.eulerAngles;
+        xRotation = initialRotation.x;
+        yRotation = initialRotation.y;
+
     }
 
     // Update is called once per frame
@@ -26,7 +30,7 @@ public class MouseMovment : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime ;
 
         //rotation around X axis -> look up and down 
-        xRotation += mouseY;
+        xRotation -= mouseY;
 
         //clamb rotation(90 degree nte moolikk thiriyaan pattoola
         xRotation = Mathf.Clamp(xRotation, topclamb, bottomclamb);
