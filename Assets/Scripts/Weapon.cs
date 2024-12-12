@@ -10,8 +10,18 @@ public class Weapon : MonoBehaviour
     public GameObject MuzzleFlash;
     public Transform MuzzlePosition;
     public GameObject ImpactEffect;
-   
 
+    public AudioClip shootingSound;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component missing on Weapon object.");
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +33,12 @@ public class Weapon : MonoBehaviour
 
      void Shoot()
     {
+
+        if (audioSource != null && shootingSound != null)
+        {
+            audioSource.PlayOneShot(shootingSound);
+        }
+
         GameObject Flash = Instantiate(MuzzleFlash,MuzzlePosition);
         Destroy(Flash,0.1f);
         RaycastHit hit;
